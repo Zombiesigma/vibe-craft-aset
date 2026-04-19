@@ -1,52 +1,84 @@
+"use client";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
 import BookCard from "@/components/BookCard";
 import { books } from "@/lib/data";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-black text-white pt-24 pb-12">
       <Navbar />
-      <Hero />
       
-      <section className="px-6 py-20 max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-12">
-          <div>
-            <h2 className="text-3xl font-bold mb-2">Trending Sekarang</h2>
-            <p className="text-gray-400">Buku-buku yang paling banyak dibaca minggu ini.</p>
+      {/* Hero Section */}
+      <section className="px-6 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="relative h-[400px] rounded-3xl overflow-hidden flex items-center px-12"
+        >
+          <div className="absolute inset-0 z-0">
+            <img 
+              src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000&auto=format&fit=crop" 
+              className="w-full h-full object-cover opacity-40"
+              alt="Hero"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
           </div>
-          <button className="text-blue-500 hover:underline font-medium">Lihat Semua</button>
+          
+          <div className="relative z-10 max-w-2xl">
+            <motion.span 
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-blue-500 font-bold tracking-widest uppercase text-sm mb-4 block"
+            >
+              Featured Collection
+            </motion.span>
+            <motion.h1 
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-6xl font-black mb-6 leading-tight"
+            >
+              Explore the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Infinite Universe</span> of Stories
+            </motion.h1>
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-all"
+            >
+              Start Reading Now
+            </motion.button>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Library Grid */}
+      <section className="px-6">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-3xl font-bold">Your Library</h2>
+          <div className="flex gap-4">
+            {["All", "Trending", "Sci-Fi", "Business"].map((cat) => (
+              <button key={cat} className="px-4 py-2 rounded-full border border-white/10 hover:bg-white/10 transition-colors text-sm">
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {books.map((book) => (
-            <BookCard key={book.id} book={book} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {books.map((book, index) => (
+            <motion.div
+              key={book.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <BookCard book={book} />
+            </motion.div>
           ))}
         </div>
       </section>
-
-      <section className="px-6 py-20 bg-gradient-to-b from-transparent to-blue-900/10">
-        <div className="max-w-7xl mx-auto bg-blue-600 rounded-3xl p-12 flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="max-w-md">
-            <h2 className="text-3xl font-bold mb-4">Dapatkan Update Terbaru</h2>
-            <p className="text-blue-100">Berlangganan newsletter kami untuk mendapatkan info rilis buku terbaru dan diskon eksklusif.</p>
-          </div>
-          <div className="flex w-full md:w-auto gap-2">
-            <input 
-              type="email" 
-              placeholder="Email Anda" 
-              className="bg-white/10 border border-white/20 rounded-xl px-6 py-3 outline-none focus:bg-white/20 w-full md:w-64"
-            />
-            <button className="bg-white text-blue-600 px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors">
-              Join
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <footer className="px-6 py-12 border-t border-white/10 text-center text-gray-500 text-sm">
-        © 2024 VibeBooks. Built with passion for readers.
-      </footer>
     </main>
   );
 }
