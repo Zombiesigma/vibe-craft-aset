@@ -1,30 +1,34 @@
 "use client";
-import { Search, BookOpen, User } from "lucide-react";
 import { motion } from "framer-motion";
+import { BookOpen, Search, ShoppingCart, User } from "lucide-react";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-md border-b border-white/10 px-6 py-4 flex justify-between items-center">
-      <motion.div 
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="flex items-center gap-2"
-      >
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className="fixed top-0 w-full z-50 border-b border-white/10 bg-black/50 backdrop-blur-md px-6 py-4 flex justify-between items-center"
+    >
+      <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tighter">
         <BookOpen className="text-blue-500" />
-        <span className="text-xl font-bold tracking-tighter">VIBE<span className="text-blue-500">READER</span></span>
-      </motion.div>
-      
-      <div className="flex items-center gap-6">
-        <div className="relative hidden md:block">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          <input 
-            type="text" 
-            placeholder="Cari buku..." 
-            className="bg-white/5 border border-white/10 rounded-full py-1.5 pl-10 pr-4 focus:outline-none focus:ring-2 ring-blue-500 transition-all w-64"
-          />
-        </div>
-        <User className="w-6 h-6 cursor-pointer hover:text-blue-400 transition-colors" />
+        <span>VIBE<span className="text-blue-500">BOOKS</span></span>
+      </Link>
+
+      <div className="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+        <Link href="#" className="hover:text-white transition-colors">Library</Link>
+        <Link href="#" className="hover:text-white transition-colors">Categories</Link>
+        <Link href="#" className="hover:text-white transition-colors">Bestsellers</Link>
+        <Link href="#" className="hover:text-white transition-colors">New Releases</Link>
       </div>
-    </nav>
+
+      <div className="flex gap-5 items-center">
+        <Search className="w-5 h-5 cursor-pointer hover:text-blue-500 transition-colors" />
+        <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-blue-500 transition-colors" />
+        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center cursor-pointer">
+          <User className="w-4 h-4" />
+        </div>
+      </div>
+    </motion.nav>
   );
 }

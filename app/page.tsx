@@ -1,53 +1,52 @@
-"use client";
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
 import BookCard from "@/components/BookCard";
-import ReaderModal from "@/components/ReaderModal";
-import { books, Book } from "@/data/books";
-import { motion } from "framer-motion";
+import { books } from "@/lib/data";
 
 export default function Home() {
-  const [selectedBook, setSelectedBook] = useState<Book | null>(null);
-
   return (
-    <main className="min-h-screen bg-black text-white pt-24 pb-12 px-6 md:px-12">
+    <main className="min-h-screen">
       <Navbar />
+      <Hero />
       
-      <header className="max-w-7xl mx-auto mb-12">
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-black mb-4 tracking-tighter"
-        >
-          PERPUSTAKAAN <span className="text-blue-600">DIGITAL.</span>
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-gray-400 text-lg max-w-2xl"
-        >
-          Eksplorasi koleksi eBook eksklusif dengan pengalaman membaca yang imersif dan futuristik.
-        </motion.p>
-      </header>
+      <section className="px-6 py-20 max-w-7xl mx-auto">
+        <div className="flex justify-between items-end mb-12">
+          <div>
+            <h2 className="text-3xl font-bold mb-2">Trending Sekarang</h2>
+            <p className="text-gray-400">Buku-buku yang paling banyak dibaca minggu ini.</p>
+          </div>
+          <button className="text-blue-500 hover:underline font-medium">Lihat Semua</button>
+        </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-        {books.map((book, index) => (
-          <motion.div
-            key={book.id}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <BookCard book={book} onClick={setSelectedBook} />
-          </motion.div>
-        ))}
-      </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {books.map((book) => (
+            <BookCard key={book.id} book={book} />
+          ))}
+        </div>
+      </section>
 
-      <ReaderModal 
-        book={selectedBook} 
-        onClose={() => setSelectedBook(null)} 
-      />
+      <section className="px-6 py-20 bg-gradient-to-b from-transparent to-blue-900/10">
+        <div className="max-w-7xl mx-auto bg-blue-600 rounded-3xl p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="max-w-md">
+            <h2 className="text-3xl font-bold mb-4">Dapatkan Update Terbaru</h2>
+            <p className="text-blue-100">Berlangganan newsletter kami untuk mendapatkan info rilis buku terbaru dan diskon eksklusif.</p>
+          </div>
+          <div className="flex w-full md:w-auto gap-2">
+            <input 
+              type="email" 
+              placeholder="Email Anda" 
+              className="bg-white/10 border border-white/20 rounded-xl px-6 py-3 outline-none focus:bg-white/20 w-full md:w-64"
+            />
+            <button className="bg-white text-blue-600 px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors">
+              Join
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <footer className="px-6 py-12 border-t border-white/10 text-center text-gray-500 text-sm">
+        © 2024 VibeBooks. Built with passion for readers.
+      </footer>
     </main>
   );
 }
