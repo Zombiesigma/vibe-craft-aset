@@ -7,7 +7,11 @@ body {
   font-family: sans-serif;
 }
 
-@theme {
-  --color-primary: #ffffff;
-  --color-secondary: #a1a1aa;
+@layer components {
+  .input-field {
+    @apply bg-zinc-900 border border-zinc-800 text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full;
+  }
+  .btn-primary {
+    @apply bg-white text-black font-bold py-3 px-6 rounded-lg hover:bg-zinc-200 transition-colors;
+  }
 }
