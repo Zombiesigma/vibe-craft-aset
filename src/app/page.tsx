@@ -1,24 +1,43 @@
-import Hero from '@/components/Hero';
-import Projects from '@/components/Projects';
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen">
-      <Hero />
-      <Projects />
-      <section id="about" className="py-20 px-8 bg-slate-50 dark:bg-slate-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">About My Process</h2>
-          <p className="text-lg text-slate-600 dark:text-slate-400">
-            I don't just write code; I solve business problems. My approach focuses 
-            on performance, accessibility, and clean architecture to ensure 
-            long-term maintainability and user satisfaction.
-          </p>
+    <main className="min-h-screen bg-black">
+      <Navbar />
+      
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center text-center px-4 py-32">
+        <h1 className="text-6xl md:text-8xl font-bold tracking-tight mb-6">
+          Bangun Masa Depan <br /> Lebih Cepat.
+        </h1>
+        <p className="text-zinc-400 text-lg md:text-xl max-w-2xl mb-10">
+          Solusi pengembangan web modern dengan performa tinggi dan desain minimalis. 
+          Fokus pada pengalaman pengguna yang elegan.
+        </p>
+        <div className="flex gap-4">
+          <button className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-zinc-200 transition">
+            Dapatkan Akses
+          </button>
+          <button className="border border-zinc-800 px-8 py-4 rounded-lg font-semibold hover:bg-zinc-900 transition">
+            Pelajari Lebih Lanjut
+          </button>
         </div>
       </section>
-      <footer className="py-10 text-center border-t border-slate-200 dark:border-slate-800">
-        <p className="text-slate-500">© {new Date().getFullYear()} VibeCraft Nexus. All rights reserved.</p>
-      </footer>
+
+      {/* Feature Section Preview */}
+      <section className="max-w-7xl mx-auto px-6 py-20 border-t border-zinc-900">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="space-y-4">
+              <div className="h-10 w-10 bg-zinc-800 rounded-lg"></div>
+              <h3 className="text-xl font-semibold">Fitur Unggulan {i}</h3>
+              <p className="text-zinc-500">
+                Deskripsi singkat mengenai layanan yang ditawarkan untuk meningkatkan produktivitas Anda.
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
