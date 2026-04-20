@@ -6,9 +6,7 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
+      // Custom theme extensions if needed
     },
   },
   plugins: [],
