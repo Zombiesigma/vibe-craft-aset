@@ -1,84 +1,45 @@
-"use client";
-import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import BookCard from "@/components/BookCard";
-import { books } from "@/lib/data";
+import Hero from "@/components/Hero";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white pt-24 pb-12">
+    <main className="bg-dark min-h-screen">
       <Navbar />
+      <Hero />
+      <Projects />
       
-      {/* Hero Section */}
-      <section className="px-6 mb-16">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="relative h-[400px] rounded-3xl overflow-hidden flex items-center px-12"
-        >
-          <div className="absolute inset-0 z-0">
-            <img 
-              src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2000&auto=format&fit=crop" 
-              className="w-full h-full object-cover opacity-40"
-              alt="Hero"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
-          </div>
-          
-          <div className="relative z-10 max-w-2xl">
-            <motion.span 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-blue-500 font-bold tracking-widest uppercase text-sm mb-4 block"
-            >
-              Featured Collection
-            </motion.span>
-            <motion.h1 
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-6xl font-black mb-6 leading-tight"
-            >
-              Explore the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">Infinite Universe</span> of Stories
-            </motion.h1>
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-blue-500 hover:text-white transition-all"
-            >
-              Start Reading Now
-            </motion.button>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Library Grid */}
-      <section className="px-6">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold">Your Library</h2>
-          <div className="flex gap-4">
-            {["All", "Trending", "Sci-Fi", "Business"].map((cat) => (
-              <button key={cat} className="px-4 py-2 rounded-full border border-white/10 hover:bg-white/10 transition-colors text-sm">
-                {cat}
-              </button>
+      {/* Skills Section Placeholder */}
+      <section id="skills" className="py-20 bg-dark/50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-white mb-8">Skills & Tools</h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            {["React", "Next.js", "TypeScript", "Tailwind", "Node.js", "Framer Motion"].map((skill) => (
+              <div key={skill} className="px-6 py-3 bg-white/5 border border-white/10 rounded-full text-gray-300">
+                {skill}
+              </div>
             ))}
           </div>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-          {books.map((book, index) => (
-            <motion.div
-              key={book.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <BookCard book={book} />
-            </motion.div>
-          ))}
+      {/* Contact Section Placeholder */}
+      <section id="contact" className="py-20 bg-dark">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Get In Touch</h2>
+          <p className="text-gray-400 mb-8">I'm currently looking for new opportunities. My inbox is always open!</p>
+          <a 
+            href="mailto:hello@example.com" 
+            className="inline-block bg-gradient-to-r from-primary to-secondary text-white px-10 py-4 rounded-full font-bold shadow-lg shadow-primary/20"
+          >
+            Say Hello
+          </a>
         </div>
       </section>
+
+      <footer className="py-10 border-t border-white/5 text-center text-gray-500 text-sm">
+        © {new Date().getFullYear()} VibeDev. Built with Next.js & Framer Motion.
+      </footer>
     </main>
   );
 }
